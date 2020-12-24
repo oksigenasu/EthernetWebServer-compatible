@@ -35,13 +35,15 @@
     1.2.0   K Hoang      04/12/2020 Add support to NativeEthernet Library for Teensy 4.1
  *****************************************************************************************************************************/
 
-#pragma once
+// #pragma once
+#ifndef EREQUESTHANDLER_H
+#define EREQUESTHANDLER_H
 
-class RequestHandler
+class eRequestHandler
 {
   public:
 
-    virtual ~RequestHandler() { }
+    virtual ~eRequestHandler() { }
 
     virtual bool canHandle(HTTPMethod method, String uri)
     {
@@ -60,18 +62,19 @@ class RequestHandler
 
     virtual void upload(EthernetWebServer& server, String requestUri, HTTPUpload& upload) {}
 
-    RequestHandler* next()
+    eRequestHandler* next()
     {
       return _next;
     }
 
-    void next(RequestHandler* r)
+    void next(eRequestHandler* r)
     {
       _next = r;
     }
 
   private:
 
-    RequestHandler* _next = nullptr;
+    eRequestHandler* _next = nullptr;
 };
 
+#endif

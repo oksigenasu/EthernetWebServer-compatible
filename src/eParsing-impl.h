@@ -225,7 +225,7 @@ bool EthernetWebServer::_parseRequest(EthernetClient& client)
   ET_LOGDEBUG1(F("search: "), searchStr);
 
   //attach handler
-  RequestHandler* handler;
+  eRequestHandler* handler;
 
   for (handler = _firstHandler; handler; handler = handler->next())
   {

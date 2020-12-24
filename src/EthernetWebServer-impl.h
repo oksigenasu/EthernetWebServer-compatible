@@ -40,7 +40,7 @@
 #include <Arduino.h>
 #include <libb64/cencode.h>
 #include "EthernetWebServer.h"
-#include "detail/RequestHandlersImpl.h"
+#include "detail/eRequestHandlersImpl.h"
 #include "detail/Debug.h"
 #include "detail/mimetable.h"
 
@@ -68,11 +68,11 @@ EthernetWebServer::~EthernetWebServer()
     delete[]_currentHeaders;
     
   _headerKeysCount = 0;
-  RequestHandler* handler = _firstHandler;
+  eRequestHandler* handler = _firstHandler;
   
   while (handler) 
   {
-    RequestHandler* next = handler->next();
+    eRequestHandler* next = handler->next();
     delete handler;
     handler = next;
   }
@@ -158,12 +158,12 @@ void EthernetWebServer::on(const String &uri, HTTPMethod method, EthernetWebServ
   _addRequestHandler(new FunctionRequestHandler(fn, ufn, uri, method));
 }
 
-void EthernetWebServer::addHandler(RequestHandler* handler) 
+void EthernetWebServer::addHandler(eRequestHandler* handler) 
 {
   _addRequestHandler(handler);
 }
 
-void EthernetWebServer::_addRequestHandler(RequestHandler* handler) 
+void EthernetWebServer::_addRequestHandler(eRequestHandler* handler) 
 {
   if (!_lastHandler) 
   {

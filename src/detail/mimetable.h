@@ -35,8 +35,9 @@
     1.2.0   K Hoang      04/12/2020 Add support to NativeEthernet Library for Teensy 4.1
  *****************************************************************************************************************************/
  
-#pragma once
-
+// #pragma once
+#ifndef MIMETABLE_H
+#define MIMETABLE_H
 namespace mime
 {
 
@@ -104,3 +105,4 @@ const Entry mimeTable[maxType] =
 //extern const Entry mimeTable[maxType];
 }
 
+#endif

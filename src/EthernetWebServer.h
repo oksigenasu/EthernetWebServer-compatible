@@ -184,7 +184,7 @@ typedef struct
   uint8_t buf[HTTP_UPLOAD_BUFLEN];
 } HTTPUpload;
 
-#include "detail/RequestHandler.h"
+#include "detail/eRequestHandler.h"
 
 class EthernetWebServer
 {
@@ -208,7 +208,7 @@ class EthernetWebServer
     void on(const String &uri, THandlerFunction handler);
     void on(const String &uri, HTTPMethod method, THandlerFunction fn);
     void on(const String &uri, HTTPMethod method, THandlerFunction fn, THandlerFunction ufn);
-    void addHandler(RequestHandler* handler);
+    void addHandler(eRequestHandler* handler);
     void onNotFound(THandlerFunction fn);  //called when handler is not assigned
     void onFileUpload(THandlerFunction fn); //handle file uploads
 
@@ -294,7 +294,7 @@ class EthernetWebServer
     }
 
   protected:
-    void _addRequestHandler(RequestHandler* handler);
+    void _addRequestHandler(eRequestHandler* handler);
     void _handleRequest();
     void _finalizeResponse();
     bool _parseRequest(EthernetClient& client);
@@ -331,9 +331,9 @@ class EthernetWebServer
     HTTPClientStatus  _currentStatus;
     unsigned long     _statusChange;
 
-    RequestHandler*   _currentHandler;
-    RequestHandler*   _firstHandler;
-    RequestHandler*   _lastHandler;
+    eRequestHandler*   _currentHandler;
+    eRequestHandler*   _firstHandler;
+    eRequestHandler*   _lastHandler;
     THandlerFunction  _notFoundHandler;
     THandlerFunction  _fileUploadHandler;
 
@@ -361,5 +361,5 @@ class EthernetWebServer
 };
 
 #include "EthernetWebServer-impl.h"
-#include "Parsing-impl.h"
+#include "eParsing-impl.h"
 

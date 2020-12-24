@@ -35,12 +35,13 @@
     1.2.0   K Hoang      04/12/2020 Add support to NativeEthernet Library for Teensy 4.1
  *****************************************************************************************************************************/
 
-#pragma once
+#ifndef EREQUESTHANDLERSIMPL_H
+#define EREQUESTHANDLERSIMPL_H
 
-#include "RequestHandler.h"
+#include "eRequestHandler.h"
 #include "mimetable.h"
 
-class FunctionRequestHandler : public RequestHandler
+class FunctionRequestHandler : public eRequestHandler
 {
   public:
 
@@ -102,7 +103,7 @@ class FunctionRequestHandler : public RequestHandler
     HTTPMethod _method;
 };
 
-class StaticRequestHandler : public RequestHandler
+class StaticRequestHandler : public eRequestHandler
 {
   public:
 
@@ -181,3 +182,4 @@ class StaticRequestHandler : public RequestHandler
     size_t _baseUriLength;
 };
 
+#endif
