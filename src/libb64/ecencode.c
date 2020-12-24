@@ -34,7 +34,7 @@
     1.2.0   K Hoang      04/12/2020 Add support to NativeEthernet Library for Teensy 4.1
  *****************************************************************************************************************************/
  
-#include "cencode.h"
+#include "ecencode.h"
 
 const int CHARS_PER_LINE = 72;
 

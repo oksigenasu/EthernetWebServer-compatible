@@ -38,11 +38,11 @@
 #pragma once
 
 #include <Arduino.h>
-#include <libb64/cencode.h>
+#include "libb64/ecencode.h"
 #include "EthernetWebServer.h"
 #include "detail/eRequestHandlersImpl.h"
 #include "detail/Debug.h"
-#include "detail/mimetable.h"
+#include "detail/emimetable.h"
 
 const char * AUTHORIZATION_HEADER = "Authorization";
 
@@ -417,7 +417,7 @@ void EthernetWebServer::_prepareHeader(String& response, int code, const char* c
   response += _responseCodeToString(code);
   response += "\r\n";
 
- using namespace mime;
+ using namespace emime;
  
   if (!content_type)
       content_type = mimeTable[html].mimeType;
@@ -813,7 +813,7 @@ void EthernetWebServer::_handleRequest()
   
   if (!handled) 
   {
-    using namespace mime;
+    using namespace emime;
     
     send(404, mimeTable[html].mimeType, String("Not found: ") + _currentUri);
     handled = true;

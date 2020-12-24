@@ -12,9 +12,9 @@
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/khoih-prog/EthernetWebServer"
+    "url": "https://github.com/oksigenasu/EthernetWebServer"
   },
-  "homepage": "https://github.com/khoih-prog/EthernetWebServer",
+  "homepage": "https://github.com/oksigenasu/EthernetWebServer",
   "export": {
     "exclude": [
       "linux",

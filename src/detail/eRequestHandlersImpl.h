@@ -39,7 +39,7 @@
 #define EREQUESTHANDLERSIMPL_H
 
 #include "eRequestHandler.h"
-#include "mimetable.h"
+#include "emimetable.h"
 
 class FunctionRequestHandler : public eRequestHandler
 {
@@ -122,7 +122,7 @@ class StaticRequestHandler : public eRequestHandler
 
     static String getContentType(const String& path)
     {
-      using namespace mime;
+      using namespace emime;
       char buff[sizeof(mimeTable[0].mimeType)];
 
       // Check all entries but last one for match, return if found

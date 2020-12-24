@@ -38,8 +38,8 @@
 
 // Reintroduce to prevent duplication compile error if other lib/core already has LIB64
 // pragma once can't prevent that
-#ifndef BASE64_CENCODE_H
-#define BASE64_CENCODE_H
+#ifndef BASE64_ECENCODE_H
+#define BASE64_ECENCODE_H
 
 #define base64_encode_expected_len(n) ((((4 * n) / 3) + 3) & ~3)
 

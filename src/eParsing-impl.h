@@ -276,7 +276,7 @@ bool EthernetWebServer::_parseRequest(EthernetClient& client)
       //KH
       if (headerName.equalsIgnoreCase("Content-Type"))
       {
-        using namespace mime;
+        using namespace emime;
         
         if (headerValue.startsWith(mimeTable[txt].mimeType))
         {
@@ -776,7 +776,7 @@ bool EthernetWebServer::_parseForm(EthernetClient& client, const String& boundar
 
           ET_LOGDEBUG1(F("PostArg Name: "), argName);
 
-          using namespace mime;
+          using namespace emime;
           
           argType = mimeTable[txt].mimeType;
           line    = client.readStringUntil('\r');
@@ -823,7 +823,7 @@ bool EthernetWebServer::_parseForm(EthernetClient& client, const String& boundar
           }
           else
           {
-            //_currentUpload.reset(new HTTPUpload());
+            //_currentUpload.reset(new eHTTPUpload());
             if (!_currentUpload)
               _currentUpload = new HTTPUpload();
 

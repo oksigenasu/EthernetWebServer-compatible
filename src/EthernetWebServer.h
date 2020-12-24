@@ -93,7 +93,7 @@
   #warning Using Ethernet library from EthernetWebServer
 #endif
 
-#include "detail/mimetable.h"
+#include <detail/emimetable.h>
 
 // KH, For PROGMEM commands
 // ESP32/ESP8266 includes <pgmspace.h> by default, and memccpy_P was already defined there
@@ -118,11 +118,12 @@
   #define PGM_VOID_P const void *
 #endif
 
-//////
+#if !NO_WIFI
+#include <ESP8266WebServer.h>
+#endif
 
-
-enum HTTPMethod 
-{ 
+#ifdef NO_WIFI
+enum HTTPMethod { 
   HTTP_ANY, 
   HTTP_GET,
   HTTP_HEAD,
@@ -133,7 +134,7 @@ enum HTTPMethod
   HTTP_OPTIONS 
 };
 
-enum HTTPUploadStatus 
+enum eHTTPUploadStatus 
 { 
   UPLOAD_FILE_START, 
   UPLOAD_FILE_WRITE, 
@@ -141,18 +142,19 @@ enum HTTPUploadStatus
   UPLOAD_FILE_ABORTED
 };
 
-enum HTTPClientStatus 
+enum eHTTPClientStatus 
 { 
   HC_NONE, 
   HC_WAIT_READ, 
   HC_WAIT_CLOSE 
 };
 
-enum HTTPAuthMethod 
+enum eHTTPAuthMethod 
 { 
   BASIC_AUTH, 
   DIGEST_AUTH 
 };
+#endif
 
 #define HTTP_DOWNLOAD_UNIT_SIZE 1460
 
@@ -172,6 +174,7 @@ enum HTTPAuthMethod
 
 class EthernetWebServer;
 
+#ifdef NO_WIFI
 typedef struct 
 {
   HTTPUploadStatus status;
@@ -183,6 +186,7 @@ typedef struct
   size_t  contentLength;  // size of entire post request, file size + headers and other request data.
   uint8_t buf[HTTP_UPLOAD_BUFLEN];
 } HTTPUpload;
+#endif
 
 #include "detail/eRequestHandler.h"
 
@@ -280,7 +284,7 @@ class EthernetWebServer
 
     template<typename T> size_t streamFile(T &file, const String& contentType) 
     {
-      using namespace mime;
+      using namespace emime;
       setContentLength(file.size());
       
       if (String(file.name()).endsWith(mimeTable[gz].endsWith) && contentType != mimeTable[gz].mimeType && contentType != mimeTable[none].mimeType) 
